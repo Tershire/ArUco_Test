@@ -1,0 +1,68 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+bin/
+
+# cmake
+*cmake-build-*
+*.idea
+**build**
+
+# config
+vision_system_config.yaml
+
+# setting
+sensor_setting.yaml
+
+# python virtual environment
+**venv**
+
+# image
+*.jpg
+*.jpeg
+*.png
+
+# model
+runs/
+*.pt
+*.onnx
+
+# jupyter
+.ipynb_checkpoints
+
+# inference
+*.names
+
+# output_data
+output_data/
+*.csv
+

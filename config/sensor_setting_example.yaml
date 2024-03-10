@@ -1,0 +1,84 @@
+%YAML:1.0
+
+# /////////////////////////
+# // IONLAB ISAE-SUPAERO //
+# // TELLO SLAM PROJECT  //
+# /////////////////////////
+
+# camera_model: {"Pinhole", "Brown-Conrady"}
+
+# USB Camera /////////////////////////////////////////////////////////////////
+# Camera Model
+USB.camera_model: "Brown-Conrady"
+
+# Camera Matrix
+# [ fx, 0, cx, 0, fy, cy, 0, 0, 1 ]
+USB.K: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   # data: [ 5.4217012914864461e+02, 0., 3.1358699299039529e+02, 0.,
+   #     5.4224253523170023e+02, 2.6770500351696302e+02, 0., 0., 1. ]
+   data: [ 1071.73, 0, 974.235, 
+         0, 1067.18, 468.747, 
+         0, 0, 1 ]
+
+# Distortion Coefficients
+# [ k1, k2, p1, p2 [, k3 [, k4, k5, k6 [, s1, s2, s3, s4 [,τx ,τy]]]] ]
+USB.D: !!opencv-matrix
+   rows: 1
+   cols: 5
+   dt: d
+   # data: [ -2.5140646132401290e-01, 2.4523675621817986e+00,
+   #     1.1766411351169402e-02, 5.0490823965420595e-03,
+   #     -6.3316271875577890e+00 ]
+   data: [ -0.00812691, -0.0626833, -0.00270231, -0.00430813, 0.0268622 ]
+    
+# Raspberry Camera /////////////////////////////////////////////////////////////////
+# Camera Model
+raspberry.camera_model: "Brown-Conrady"
+
+# Camera Matrix
+# [ fx, 0, cx, 0, fy, cy, 0, 0, 1 ]
+raspberry.K: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [ 720.61574456780841, 0, 410, 0, 
+        720.61574456780841, 231, 0, 0, 1 ]
+
+# Distortion Coefficients
+# [ k1, k2, p1, p2 [, k3 [, k4, k5, k6 [, s1, s2, s3, s4 [,τx ,τy]]]] ]
+raspberry.D: !!opencv-matrix
+   rows: 1
+   cols: 5
+   dt: d
+   data: [ -0.41296043944711791, 0.35737925634464163, 
+        0, 0, 
+        -0.29682498796504120 ]
+
+# Realsense Camera ////////////////////////////////////////////////////////////
+# Color Imager ================================================================
+# Camera Model
+color_imager.camera_model: "Brown-Conrady"
+
+# Camera Matrix
+# [ fx, 0, cx, 0, fy, cy, 0, 0, 1 ]
+color_imager.K: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [ 639.783, 0., 644.601, 0.,
+       639.042, 362.6, 0., 0., 1. ]
+
+# Distortion Coefficients
+# [ k1, k2, p1, p2 [, k3 [, k4, k5, k6 [, s1, s2, s3, s4 [,τx ,τy]]]] ]
+color_imager.D: !!opencv-matrix
+   rows: 1
+   cols: 5
+   dt: d
+   data: [ -0.0575738, 0.0677569,
+        0.000148699, 0.000307403,
+        -0.0217161 ]
+
+# Depth Imagers ===============================================================
