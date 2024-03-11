@@ -18,6 +18,7 @@
 #include "camera/camera.h"
 #include "camera/pinhole.h"
 #include "camera/brown_conrady.h"
+#include "config.h"
 
 
 namespace aruco_test
@@ -38,29 +39,16 @@ public:
 
     // getter & setter ////////////////////////////////////////////////////////
     // getter =================================================================
+    Camera::Ptr get_tello_camera() const {return tello_camera_;}
     Camera::Ptr get_usb_camera() const {return usb_camera_;}
-
-    Camera::Ptr get_raspberry_camera() const {return raspberry_camera_;}
-
-    Camera::Ptr get_color_imager() const {return color_imager_;}
-    Camera::Ptr get_depth_imager(const int& camera_id) const
-    {
-        return depth_imagers_.at(camera_id);
-    }
 
 private:
     // member data ////////////////////////////////////////////////////////////
     cv::FileStorage file_;
 
-    // USB
+    // cameras
+    Camera::Ptr tello_camera_;
     Camera::Ptr usb_camera_;
-
-    // raspberry
-    Camera::Ptr raspberry_camera_; 
-    
-    // realsense
-    Camera::Ptr color_imager_;
-    std::vector<Camera::Ptr> depth_imagers_;
 
     // member methods /////////////////////////////////////////////////////////
     /**
@@ -99,14 +87,14 @@ private:
 
     // ========================================================================
     /**
-     * read camera setting then create and set Camera object
+     * read camera setting then create and set Tello Camera object
+     */
+    void read_and_set_tello_camera();
+
+    /**
+     * read camera setting then create and set USB Camera object
      */
     void read_and_set_usb_camera();
-
-    void read_and_set_raspberry_camera();
-
-    void read_and_set_color_imager();
-    void read_and_set_depth_imagers(const int& num_cameras);
 };
 
 } // namespace aruco_test
