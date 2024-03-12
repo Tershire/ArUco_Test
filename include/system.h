@@ -72,8 +72,6 @@ private:
     std::string mono_camera_to_use_;
     Camera::Ptr mono_camera_;
 
-    float pre_resize_factor_;
-
     // system components ======================================================
     ArUco_Detector::Ptr aruco_detector_ = nullptr;
     IMU_Reader::Ptr imu_reader_ = nullptr;

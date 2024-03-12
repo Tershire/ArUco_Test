@@ -21,14 +21,10 @@ setting_file_path: ./config/sensor_setting.yaml
 USB_camera_ID: 0
 
 # Video
-# video_file_path ex) /home/tershire/Videos/doors/20240224_MDE-01.mp4
 video_file_path: /home/tershire/Videos/doors/20240224_res2_corridor-01.mp4
 
 # Tello
 tello_video_stream: "udp://0.0.0.0:11111"
-
-# image size
-pre_resize_factor: 1.0
 
 # Output //////////////////////////////////////////////////////////////////////
 resize_scale_factor: 0.5

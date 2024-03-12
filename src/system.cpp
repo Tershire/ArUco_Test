@@ -58,9 +58,7 @@ bool System::initialize()
     else
         std::cout << "ERROR: no such mono camera to use" << std::endl;
 
-    // pre-rescale ------------------------------------------------------------
-    pre_resize_factor_ = Config::read<float>("pre_resize_factor");
-    mono_camera_->rescale(pre_resize_factor_);
+    std::cout << "cameraMatrix: " << mono_camera_->cameraMatrix_ << std::endl;
     
     // create vision system components ========================================
     // ArUco Detector ---------------------------------------------------------

@@ -64,12 +64,6 @@ public:
      * @return p3D_normalized (of cN)
      */
     virtual Vec3 pixel_to_normalized_image_plane(const Vec2& p2D_pixel) = 0;
-
-    // ========================================================================
-    /**
-     * rescale
-     */
-    void rescale(const float& scale_factor);
 };
 
 } // namespace aruco_test

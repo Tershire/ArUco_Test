@@ -16,26 +16,48 @@
 #include "port/config.h"
 #include "system.h"
 #include "marker/aruco_detector.h"
+#include "tello.hpp"
 
 using namespace aruco_test;
 
 
 int main(int argc, char **argv)
 {
+    // configure system =======================================================
     std::string configuration_file_path = "./config/vision_system_config.yaml";
     
-    System::Ptr vision_system = std::make_shared<System>(configuration_file_path);    
-    assert(vision_system->initialize() == true);
+    System::Ptr system = std::make_shared<System>(configuration_file_path);    
+    assert(system->initialize() == true);
     
-    ArUco_Detector::Ptr aruco_detector = vision_system->get_aruco_detector();
-    /*
-    int target_id;
-	std::cout << "Enter target_id: ";
-	std::cin >> target_id;
-    aruco_detector->set_target_id(target_id);
-    */
+    // connect to Tello =======================================================
+    if (system->input_mode_ == "tello")
+    {
+        Tello tello;
+        if (!tello.connect()) 
+        {
+            return -1;
+        }
 
-    aruco_detector->run_for_data_collection();
+        tello.enable_video_stream();
+    }
+
+    // configure system components ============================================
+    ArUco_Detector::Ptr aruco_detector = system->get_aruco_detector();
+    
+    // initiate threads =======================================================
+    aruco_detector->run_for_data_collection_as_thread();
+
+    // main thread task =======================================================
+    while (true)
+    {
+        if (cv::waitKey(1) == 27)
+        {
+            break;
+        }
+    }
+    
+    // join threads ===========================================================
+    aruco_detector->close();
 
     return 0;
 }

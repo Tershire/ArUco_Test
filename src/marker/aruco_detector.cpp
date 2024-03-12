@@ -80,8 +80,6 @@ ArUco_Detector::ArUco_Detector(const int& target_id,
 
     resize_scale_factor_ = Config::read<float>("resize_scale_factor");
 
-    mono_camera_scale_factor_ = Config::read<float>("mono_camera_scale_factor");
-
     // data collection ========================================================
     csv_file_name_ = Config::read<std::string>("csv_file_name");
 }

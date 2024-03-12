@@ -36,17 +36,8 @@ Setting::Setting(const std::string& setting_file_path)
         std::cout << "Loading settings from " << setting_file_path << std::endl;
     }
 
-    std::string mono_camera_to_use = Config::read<std::string>("mono_camera_to_use");
-    if (mono_camera_to_use == "tello")
-    {
-        read_and_set_tello_camera();
-    }
-    else if (mono_camera_to_use == "usb")
-    {
-        read_and_set_usb_camera();
-    }
-    else
-        std::cout << "ERROR: no such mono camera to use" << std::endl;
+    read_and_set_tello_camera();
+    read_and_set_usb_camera();
 }
 
 // private XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

@@ -50,7 +50,6 @@ int main(int argc, char **argv)
 
     for (;;)
     {
-
         if (cv::waitKey(1) == 27) {
             break;
         }
