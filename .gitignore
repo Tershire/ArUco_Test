@@ -38,10 +38,11 @@ bin/
 **build**
 
 # config
-vision_system_config.yaml
+*configuration.yaml
+system_config.yaml
 
 # setting
-sensor_setting.yaml
+*setting.yaml
 
 # python virtual environment
 **venv**
