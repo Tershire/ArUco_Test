@@ -52,6 +52,9 @@ system_config.yaml
 *.jpeg
 *.png
 
+# video
+*.mp4
+
 # model
 runs/
 *.pt

@@ -86,6 +86,51 @@ ArUco_Detector::ArUco_Detector(const int& target_id,
 
 // member methods /////////////////////////////////////////////////////////////
 // ----------------------------------------------------------------------------
+bool ArUco_Detector::detect(cv::Mat& image, std::vector<int>& ids, 
+    std::vector<std::vector<cv::Point2f>>& p2Dss_pixel)
+{
+    std::vector<std::vector<cv::Point2f>> rejected_p2Dss_pixel;
+    detector_->detectMarkers(image, p2Dss_pixel, ids, rejected_p2Dss_pixel);
+
+    return true;
+}
+
+// ----------------------------------------------------------------------------
+bool ArUco_Detector::estimate_poses(std::vector<int>& ids, 
+    std::vector<std::vector<cv::Point2f>>& p2Dss_pixel,
+    std::vector<cv::Vec3d>& rvecs, std::vector<cv::Vec3d>& tvecs)
+{
+    std::vector<cv::Point2f> p2Ds_pixel;
+    cv::Vec3d rvec, tvec;
+
+    for (size_t i = 0; i < ids.size(); ++i)
+    {
+        p2Ds_pixel = p2Dss_pixel[i];
+
+        // estimate pose with RANSAC
+        cv::solvePnP(p3Ds_target_, p2Ds_pixel, 
+            cameraMatrix_, distCoeffs_, rvec, tvec, false, cv::SOLVEPNP_IPPE_SQUARE);
+
+        // collect
+        rvecs.push_back(rvec);
+        tvecs.push_back(tvec);
+    }
+
+    return true;
+}
+
+// ----------------------------------------------------------------------------
+bool ArUco_Detector::estimate_pose(std::vector<cv::Point2f>& p2Ds_pixel,
+    cv::Vec3d& rvec, cv::Vec3d& tvec)
+{
+    // estimate pose with RANSAC
+    cv::solvePnP(p3Ds_target_, p2Ds_pixel, 
+        cameraMatrix_, distCoeffs_, rvec, tvec, false, cv::SOLVEPNP_IPPE_SQUARE);
+
+    return true;
+}
+
+// ----------------------------------------------------------------------------
 bool ArUco_Detector::run_for_data_collection()
 {
     // image //////////////////////////////////////////////////////////////////

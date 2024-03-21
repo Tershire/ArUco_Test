@@ -71,6 +71,13 @@ public:
     void set_input_mode(const Input_Mode& input_mode) {input_mode_ = input_mode;}
 
     // member methods /////////////////////////////////////////////////////////
+    bool detect(cv::Mat& image, std::vector<int>& ids, 
+        std::vector<std::vector<cv::Point2f>>& p2Dss_pixel);
+    bool estimate_poses(std::vector<int>& ids, 
+        std::vector<std::vector<cv::Point2f>>& p2Dss_pixel,
+        std::vector<cv::Vec3d>& rvecs, std::vector<cv::Vec3d>& tvecs);
+    bool estimate_pose(std::vector<cv::Point2f>& p2Dss_pixel,
+        cv::Vec3d& rvec, cv::Vec3d& tvec);
     bool run_for_data_collection();
     bool run_for_data_collection_as_thread();
     void close();

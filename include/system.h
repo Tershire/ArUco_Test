@@ -43,6 +43,7 @@ public:
     // getter =================================================================
     ArUco_Detector::Ptr get_aruco_detector() const {return aruco_detector_;}
     IMU_Reader::Ptr get_imu_reader() const {return imu_reader_;}
+    Camera::Ptr get_mono_camera() const {return mono_camera_;}
 
     // member methods /////////////////////////////////////////////////////////
     /**
